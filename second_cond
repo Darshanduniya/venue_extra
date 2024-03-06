@@ -1,0 +1,21 @@
+with open('your_file.txt', 'r') as file:
+    lines = file.readlines()
+
+for line in lines:
+    # Extract values after the first and second '%' and '.' characters
+    first_percent_index = line.find('%')
+    first_dot_index = line.find('.', first_percent_index)
+    
+    second_percent_index = line.find('%', first_dot_index)
+    second_dot_index = line.find('.', second_percent_index)
+
+    # Extract key values
+    first_key = line[first_percent_index + 1:first_dot_index].strip()
+    second_key = line[second_percent_index + 1:second_dot_index].strip()
+
+    # Check if both keys are equal and "|&|" is present
+    if first_key == second_key and "|&|" in line:
+        print("Condition satisfied")
+        print("Line:", line)
+    else:
+        exit(1)
