@@ -1,0 +1,16 @@
+with open('your_file.txt', 'r') as file:
+  lines = file.readlines()
+
+  values_list = []
+  for line in lines:
+    percent_index = line.find('%')
+    dot_index = line.find('.')
+    if percent_index != -1 and dot_index != -1:
+      value = line[percent_index + 1:dot_index].strip()
+      values_list.append(value)
+
+  # Correct usage of all function
+  if all(value == 'HLX_DIM_VENUE_ORG' for value in values_list):  # Calls all function with list comprehension as argument
+    print('Values List:', values_list)
+  else:
+    exit(1)
