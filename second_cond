@@ -1,23 +1,24 @@
-with open('your_file.txt', 'r') as file:
-    lines = file.readlines()
+import re
 
-for line in lines:
-    # Extract values after the first and second '%' and '.' characters
-    first_percent_index = line.find('%')
-    first_dot_index = line.find('.', first_percent_index)
-    
-    second_percent_index = line.find('%', first_dot_index)
-    second_dot_index = line.find('.', second_percent_index)
+# Read data from file
+file_path = 'your_file_path.txt'  # Replace with the actual path to your file
+with open(file_path, 'r') as file:
+    data = file.read()
 
-    # Extract key values
-    first_key = line[first_percent_index + 1:first_dot_index].strip()
-    second_key = line[second_percent_index + 1:second_dot_index].strip()
+list1 = re.findall(r'%([^\.]+)\.', data)
+list2 = re.findall(r'%[^%]+%([^\.]+)\.', data)
 
-    # Check if both keys are equal and "|&|" is present
-    if first_key == second_key and "|&|" in line:
-        print("Condition satisfied")
-        print("Line:", line)
-    else:
+print("List1:", list1)
+print("List2:", list2)
+
+# Validation and comparison
+for i in range(len(list1)):
+    if list1[i].strip() == list2[i].strip():
+        print(f"Values at index {i} are the same: {list1[i]}")
+        break
+else:
+    print("Values are different at all indices.")
+
 
 
 +++++
