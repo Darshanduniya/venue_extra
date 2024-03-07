@@ -1,0 +1,23 @@
+# Read the file content
+with open('dar_file.txt', 'r') as file:
+    lines = file.readlines()
+
+# Initialize lists to store values
+list1 = []
+list2 = []
+
+# Extract values between % and . for list1 and list2
+for line in lines:
+    start_index1 = line.find('%') + 1
+    end_index1 = line.find('.', start_index1)
+    value1 = line[start_index1:end_index1]
+    list1.append(value1)
+
+    start_index2 = line.find('%', end_index1) + 1
+    end_index2 = line.find('.', start_index2)
+    value2 = line[start_index2:end_index2]
+    list2.append(value2)
+
+# Print the output
+print("List1 =", list1)
+print("List2 =", list2)
