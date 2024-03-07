@@ -1,0 +1,20 @@
+import re
+
+# Read data from file
+file_path = 'your_file_path.txt'  # Replace with the actual path to your file
+with open(file_path, 'r') as file:
+    data = file.read()
+
+list1 = re.findall(r'%([^\.]+)\.', data)
+list2 = re.findall(r'%[^%]+%([^\.]+)\.', data)
+
+print("List1:", list1)
+print("List2:", list2)
+
+# Validation and comparison
+for i in range(len(list1)):
+    if list1[i].strip() == list2[i].strip():
+        print(f"Values at index {i} are the same: {list1[i]}")
+        break
+else:
+    print("Values are different at all indices.")
