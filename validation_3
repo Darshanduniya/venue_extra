@@ -1,0 +1,16 @@
+result_lines = []
+
+# Assuming the file name is "your_file.txt"
+file_path = "your_file.txt"
+
+# Open the file and read its lines
+with open(file_path, 'r') as file:
+    lines = file.readlines()
+
+# Iterate through the lines and extract those containing "|&|"
+for line in lines:
+    if "|&|" in line:
+        result_lines.append(line.strip())
+
+# Print or use the result_lines as needed
+print(result_lines)
