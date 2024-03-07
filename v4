@@ -1,0 +1,27 @@
+with open('your_file.txt', 'r') as file:
+    lines = file.readlines()
+
+values_list = []
+values_list2 = []  # New list to store values after the second '%' and '.' in each line
+
+for line in lines:
+    # Find the index of the first '%' and the first '.' in the line
+    percent_index = line.find('%')
+    dot_index = line.find('.')
+
+    # Find the index of the second '%' and the second '.' in the line
+    second_percent_index = line.find('%', percent_index + 1)
+    second_dot_index = line.find('.', dot_index + 1)
+
+    # Extract value after the second '%' and second '.'
+    if second_percent_index != -1 and second_dot_index != -1:
+        value = line[second_percent_index + 1:second_dot_index].strip()
+        values_list2.append(value)
+
+    # Extract value after the first '%' and first '.'
+    if percent_index != -1 and dot_index != -1:
+        value = line[percent_index + 1:dot_index].strip()
+        values_list.append(value)
+
+print("Values List (after first '% and first .'):", values_list)
+print("Values List2 (after second '% and second .'):", values_list2)
