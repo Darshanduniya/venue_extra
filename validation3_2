@@ -1,0 +1,23 @@
+import re
+
+lines = [
+    "3013781%HLX_DIM_VENUE_ORG.CHANNEL2_KEY~60009|HLX_DIM_VENUE_ORG.FAMILY_KEY~60009|&|%HLX_DIM_ITEM_POSITEMS.SUBCATEGORY_KEY~1503609,2004895,100769,1|",
+    "30751%HLX_DIM_VENUE_ORG.CHANNEL2_KEY~60009|HLX_DIM_VENUE_ORG.FAMILY_KEY~8650009|&|%HLX_DIM_ITEM_POSITEMS.SUBCATEGORY_KEY~1503609,2004895,100769,1|"
+]
+
+list1 = []
+list2 = []
+
+for line in lines:
+    # Extract value between '.' and '|'
+    match1 = re.search(r'\.(.*?)\|', line)
+    if match1:
+        list1.append(match1.group(1))
+    
+    # Extract value between '.' and '%'
+    match2 = re.search(r'\.(.*?)%', line)
+    if match2:
+        list2.append(match2.group(1))
+
+print("list1:", list1)
+print("list2:", list2)
