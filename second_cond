@@ -18,4 +18,12 @@ for line in lines:
         print("Condition satisfied")
         print("Line:", line)
     else:
+
+
++++++
+for i in range(min(len(List1), len(List2))):
+  if List1[i].strip() != List2[i].strip():
+    print(f"We are getting different values at index {i}.")
+  else:
+    print(f"We are getting the same value at index {i}.")
         exit(1)
