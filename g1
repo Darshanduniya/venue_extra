@@ -1,0 +1,14 @@
+extracted_values = [] # More descriptive variable name
+
+for line in data:
+  print(f"Original line: {line}") # Use f-string for cleaner output
+
+  parts = line.split('|')
+  index = parts.index('&|')
+
+  # Extract value with clear comments
+  value_before_pipe = parts[0].split('.')[1]
+  value = value_before_pipe[:value_before_pipe.find('|')]
+  extracted_values.append(value)
+
+print("Extracted values:", extracted_values) # Clear label for extracted values
