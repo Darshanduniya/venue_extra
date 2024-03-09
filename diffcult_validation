@@ -1,0 +1,18 @@
+data_list = [
+    "158%HLX_DIM_VENUE_ORG.CHANNEL2_KEY~60009|HLX_DIM_VENUE_ORG.CHANNEL2_KEY~60009|%HLX_DIM_ITEM_POSITEMS.SUBCATEGORY_KEY~1577347,1577348,1503609,1577|",
+    "154568%HLX_DIM_VENUE_ORG.CHANNEL2_KEY~600567809|HLX_DIM_VENUE_ORG.CHANNEL2_KEY~609|&|%HLX_DIM_ITEM_POSITEMS.SUBCATEGORY_KEY~1347,17348,1509,157|"
+]
+
+# Iterate through each line in the data_list
+for line in data_list:
+    # Find the highest occurrence index of HLX_DIM_VENUE_ORG
+    highest_org_index = max([i for i, _ in enumerate(line) if line.startswith("HLX_DIM_VENUE_ORG", i)])
+
+    # Find the lowest occurrence index of HLX_DIM_ITEM_POSITEMS
+    lowest_positems_index = min([i for i, _ in enumerate(line) if line.startswith("HLX_DIM_ITEM_POSITEMS", i)])
+
+    # Check if '|&|' is present between the highest_org_index and lowest_positems_index
+    if '|&|' in line[highest_org_index:lowest_positems_index]:
+        print('|&| present')
+    else:
+        print('not present')
