@@ -1,0 +1,8 @@
+result_list = []
+
+with open('your_file.txt', 'r') as file:
+    for line in file:
+        if line.count('HLX_DIM_VENUE_ORG') > 1 or line.count('HLX_DIM_ITEM_POSITEMS') > 1:
+            result_list.append(line.strip())
+
+print(result_list)
