@@ -1,0 +1,48 @@
+data = [
+    "158%HLX_DIM_VENUE_ORG.CHANNEL2_KEY~60009|%HLX_DIM_ITEM_POSITEMS.SUBCATEGORY_KEY~1577347,1577348,1503609,157717348,1509,157|",
+    "154568%HLX_DIM_VENUE_ORG.CHANNEL2_KEY~600567809|HLX_DIM_VENUE_ORG.CHANNEL2_KEY~609|&|%HLX_DIM_ITEM_POSITEMS.SUBCATEGORY_KEY~1347,17348,1509,157|HLX_DIM_ITEM_POSITEMS.SUBCATEGORY_KEY~1347,17348,1509,157|&|1577348,1503609,1577",
+    "1538%HLX_DIM_VENUE_ORG.CHANNEL2_KEY~600567809|%HLX_DIM_ITEM_POSITEMS.SUBCATEGORY_KEY~56789,1157|HLX_DIM_ITEM_POSITEMS.SUBCATEGORY_KEY~1157|&|1577348,1503609,1577"
+]
+
+result = []
+
+for line in data:
+    if line.count("HLX_DIM_ITEM_POSITEMS") > 1:
+        result.append(line)
+
+for item in result:
+    print(item)
+
+
+
+data_list = [
+    "158%HLX_DIM_VENUE_ORG.CHANNEL2_KEY~60009|%HLX_DIM_ITEM_POSITEMS.SUBCATEGORY_KEY~1577347,1577348,1503609,1577|HLX_DIM_ITEM_POSITEMS.SUBCATEGORY_KEY~1577347|&|17348,1509,157|",
+    "154568%HLX_DIM_VENUE_ORG.CHANNEL2_KEY~600567809|HLX_DIM_VENUE_ORG.CHANNEL2_KEY~609|&|%HLX_DIM_ITEM_POSITEMS.SUBCATEGORY_KEY~1347,17348,1509,157|HLX_DIM_ITEM_POSITEMS.SUBCATEGORY_KEY~1347,17348,1509,157|&|1577348,1503609,1577"
+]
+
+if not data_list:
+    print("positem doesn't have more than once occurrence in the lines, so safe exit")
+    exit(0)
+
+max_occurrence_index = -1
+max_occurrence_count = 0
+
+# Iterate through each line in the list
+for line in data_list:
+    # Split the line using '|'
+    elements = line.split('|')
+
+    # Count the occurrences of 'HLX_DIM_ITEM_POSITEMS'
+    occurrence_count = elements.count('HLX_DIM_ITEM_POSITEMS')
+
+    # Update max_occurrence_index and max_occurrence_count if a higher count is found
+    if occurrence_count > max_occurrence_count:
+        max_occurrence_count = occurrence_count
+        max_occurrence_index = elements.index('HLX_DIM_ITEM_POSITEMS')
+
+# Check if '|&|' is present after the highest index of 'HLX_DIM_ITEM_POSITEMS'
+if '|&|' in elements[max_occurrence_index:]:
+    print('|&| present')
+else:
+    print('not present')
+    exit(1)
